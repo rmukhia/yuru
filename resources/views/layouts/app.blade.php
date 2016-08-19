@@ -119,7 +119,7 @@
 
 <script type="text/javascript">
 $(window).load(function() {
-    $("#loader").hide();
+    $("#loader-wrapper").hide();
     $('html').css('opacity','1');
 });
 </script>
