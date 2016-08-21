@@ -18,7 +18,6 @@ Route::auth();
  */
 
 Route::get('/', 'YuruController@home')->name('yuru.home');
-//Route::get('/home', 'YuruController@home')->name('yuru.home');
 Route::get('/rooms', 'YuruController@rooms')->name('yuru.rooms');
 Route::get('/resturant', 'YuruController@resturant')->name('yuru.resturant');
 Route::get('/property', 'YuruController@property')->name('yuru.property');
@@ -31,6 +30,8 @@ Route::get('/page/{page}', 'YuruController@getPage')->name('yuru.page');
 /*
  * The Admin View
  */
+
+Route::get('/admin/page/test/{page}', 'AdminController@getPage')->name('yuru.admin.page');
 
 Route::group(['middleware' => ['auth']], function() {
 	Route::get('/admin/page/{page}', 'AdminController@getPage')->name('yuru.admin.page');

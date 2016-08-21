@@ -4,6 +4,7 @@ echo "Removing old folders..."
 rm .htaccess
 echo "Running gulp..."
 gulp
+gulp --production
 mkdir -p tmp
 mv .env tmp
 echo "Copying configuration files..."

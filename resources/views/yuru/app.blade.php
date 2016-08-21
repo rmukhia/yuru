@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
-@section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.28/css/unite-gallery.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.28/themes/default/ug-theme-default.min.css">
+@section('meta')
+<meta name="page-name" content="{{ $page->name }}">
 @endsection
 
-
 @section('scripts')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.28/js/unitegallery.min.js"></script>
 <!-- TripAdvisor Snippet Script-->
 <script src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=636&amp;locationId=7170754&amp;lang=en_IN&amp;rating=true&amp;nreviews=5&amp;writereviewlink=true&amp;popIdx=true&amp;iswide=false&amp;border=false&amp;display_version=2"></script>
 
@@ -35,7 +32,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">Contact</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body description-text">
 				<table class="table table-hover">
 					<tr>
 						<td> Email: </td>
@@ -56,8 +53,14 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">Reserve Rooms</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body description-text">
 				<table class="table">
+					<tr>
+						<td>
+							<p class="col-md-offset-1">To book directly with us kindly get in touch through the contact information provided above.</p>
+							<p class="col-md-offset-1">We reply to mails promptly and will call back in case we cannot answer your phone calls for some reason.</p>
+						</td>
+					</tr>
 					<tr>
 						<td>
 							<!-- Booking.com Snippet -->

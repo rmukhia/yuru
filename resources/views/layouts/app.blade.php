@@ -10,19 +10,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @yield('meta')
     <link rel="shortcut icon" href="{{ url ('favicon.png') }}">
 
     <title>Yuru Retreat</title>
 
-    {{-- Fonts --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 
     {{-- Styles --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css">
-    <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
     @yield('css')
 
@@ -74,7 +70,7 @@
                             <li><a href="{{ route('yuru.admin.page' ,['page' => 'service']) }}">Edit Service</a></li>
                             <li><a href="{{ route('yuru.admin.page' ,['page' => 'itinerary']) }}">Edit Itinerary</a></li>
                             <li><a href="{{ route('yuru.admin.page' ,['page' => 'whattodo']) }}">Edit What To Do At Yuru</a></li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
+                            <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                         </ul>
                     </li>
                 @endif
@@ -101,6 +97,7 @@
 
 <hr>
 
+{{-- Footer --}}
 <footer class="footer">
       <div class="container">
         <p class="text-muted">© 2016 Yuru Retreat Delo Kalimpong </p>
@@ -109,20 +106,11 @@
 </footer>
 
 
-{{-- Footer --}}
-{{-- JavaScripts --}}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
-@yield('scripts')
 
-<script type="text/javascript">
-$(window).load(function() {
-    $("#loader-wrapper").hide();
-    $('html').css('opacity','1');
-});
-</script>
+{{-- JavaScripts --}}
+<script src={{ elixir('js/app.js') }} type="text/javascript" async></script>
+
+@yield('scripts')
 
 </body>
 </html>

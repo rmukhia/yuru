@@ -50,7 +50,7 @@ $divSubmitBtn = $('#div-submit-btn');
 // Initial State
 function state1()
 {
-	console.log('state1');
+	//console.log('state1');
 	$divUploadMethod.hide();
 	$divDescription.hide();
 	$divVideoThumbnail.hide();
@@ -62,7 +62,7 @@ function state1()
 // If media-type is image
 function state2()
 {
-	console.log('state2');
+	//console.log('state2');
 	$divUploadMethod.show();
 	$selectUploadMethod.val("");
 	$selectUploadMethod.prop('disabled', false);
@@ -82,7 +82,7 @@ function state2()
 // If media-type is video
 function state3()
 {
-	console.log('state3');
+	//console.log('state3');
 	$divUploadMethod.show();
 	$selectUploadMethod.val("large");
 	$selectUploadMethod.prop('disabled', true);
@@ -101,7 +101,7 @@ function state3()
 // If upload-type is simple
 function state4()
 {
-	console.log('state4');
+	//console.log('state4');
 	$divFile.show();
 	$inputFile.prop('disabled', false);
 	$inputFile.prop('required', true);
@@ -116,7 +116,7 @@ function state4()
 // If upload-type is large
 function state5()
 {
-	console.log('state5');
+	//console.log('state5');
 	$divFile.hide();
 	$inputFile.prop('disabled', true);
 	$inputFile.prop('required', false);
@@ -157,8 +157,7 @@ function uploadMethodChange()
 /** 
  * Init function
  */
-$(function() {
-	$.material.init(); 
+function adminInit() {
 	state1();
-});
+}
 

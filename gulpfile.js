@@ -1,5 +1,7 @@
 var elixir = require('laravel-elixir');
 
+require('laravel-elixir-uncss');
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -11,33 +13,77 @@ var elixir = require('laravel-elixir');
  |
  */
 
-// Commented scripts are necessary, but to improve performance they have been sourced from cdnjs in app.blade.php
-
 elixir(function(mix) {
 
-    mix.sass('app.scss', 'public/css', {outputStyle: 'compressed'});
+    mix.scripts(
+        [
+        '../../../bower_components/jquery/dist/jquery.js',
+        '../../../bower_components/bootstrap/dist/js/bootstrap.js',
+        '../../../bower_components/bootstrap-material-design/dist/js/material.js',
+        '../../../bower_components/bootstrap-material-design/dist/js/ripples.js',
+        '../../../bower_components/unitegallery/dist/js/unitegallery.js',
+        'admin/edit.js',
+        'yuru',
+        'common.js'
+        ],
+         'public/js/app.js');
 
-    mix.scripts(['admin/edit.js'], 'public/js/admin-edit.js');
+    /* Do not version these files through elixir but use hardcoded versions*/
+    mix.scripts(['../../../bower_components/unitegallery/dist/themes/default/ug-theme-default.js'], 
+        'public/js/unitegallery/ug-theme-default-1-7-28.js');
 
-    // mix.scripts(
-    // 	[
-    // 	'../../../public/vendor/unite_gallery/js/jquery-11.0.min.js', 
-    // 	'../../../public/vendor/bootstrap.min.js', 
-    // 	'../../../public/vendor/unite_gallery/js/unitegallery.min.js'
-    // 	], 'public/js/vendor.js');
+    mix.scripts(['../../../bower_components/unitegallery/dist/themes/tiles/ug-theme-tiles.js'], 
+        'public/js/unitegallery/ug-theme-tiles-1-7-28.js');
 
-    mix.scripts([
-        //'../../../public/vendor/unite_gallery/themes/default/ug-theme-default.js', 
-        'yuru/home.js'], 
-        'public/js/home.js');
-    
-    mix.scripts([
-        //'../../../public/vendor/unite_gallery/themes/tiles/ug-theme-tiles.js', 
-        'yuru/page.js'], 
-        'public/js/page.js');
-    
+    /* Compile Stylesheets */
+    mix.sass('app.scss', 
+        'resources/assets/css/build',
+        {
+            includePaths: [ "bower_components/bootstrap-sass/assets/stylesheets"]
+    });
+
+    mix.copy('bower_components/unitegallery/dist/images', 'public/build/images');
+    mix.copy('bower_components/unitegallery/dist/themes/default/images', 'public/build/css/images');
+    mix.copy('bower_components/unitegallery/dist/skins/default', 'public/build/skins/default');
+    mix.copy('bower_components/bootstrap/dist/fonts', 'public/build/fonts/bootstrap');
+
+    mix.uncss('build/app.css', {
+       html: ['http://yuru.app', 'http://yuru.app/page/rooms', 'http://yuru.app/login', 'http://yuru.app/admin/page/test/home'],
+       media : ['(min-width: 700px) handheld and (orientation: landscape)'],
+       ignore: [
+        '#added_at_runtime',
+        '.created_by_jQuery',
+        ".fade",
+        ".fade.in",
+        ".collapse",
+        ".collapse.in",
+        ".navbar-collapse.in",
+        ".collapsing",
+        ".pull-right",
+        /\.dropdown-+/,
+        /\.open/,
+        /(\.)*ripple(-+)?/,
+        ".caret",
+        ".glyphicon",
+        ".glyphicon-remove",
+        ".glyphicon-user",
+        ".glyphicon-envelope",
+        ".glyphicon-refresh",
+        ".glyphicon-off",
+        ".navbar-fixed-top"
+      ]
+    },  'resources/assets/css/build/trim/');
+
+
+    mix.styles(
+        [
+        'build/trim/app.css', 
+        '../../../bower_components/unitegallery/dist/css/unite-gallery.css',
+        '../../../bower_components/unitegallery/dist/themes/default/ug-theme-default.css'
+    ], 'public/css');
+
     mix.version([
-        'public/css/app.css', 
-        //'public/js/vendor.js', 
-        'public/js/admin-edit.js', 'public/js/home.js', 'public/js/page.js'])
+        'public/css/all.css', 
+        'public/js/app.js'
+        ]);
 });

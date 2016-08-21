@@ -1,11 +1,5 @@
 @extends('yuru.app')
 
-@section('yuru-scripts')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.28/themes/default/ug-theme-default.min.js"></script>
-<script type="text/javascript" src="{{ elixir('js/home.js') }}"></script>
-@endsection
-
-
 @section('content')
 <div id="home-gallery" style="display:none;">
 	@foreach($page->media as $media)

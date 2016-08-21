@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('meta')
+<meta name="page-name" content="admin-edit">
+@endsection
+
 @section('sidebar')
 <div class="panel panel-info">
 	<div class="panel-heading"> Edit Description </div>
@@ -109,7 +113,7 @@
 	<div class="panel panel-warning admin-thumbnail">
 		<div class="panel-heading">
 			{{$media->filename}} 
-			<span class="pull-right"> <a href="{{ route('yuru.admin.deleteMedia' ,['media' => $media->id])}}"><i class="fa fa-btn fa-trash-o"></i></a></span>
+			<span class="pull-right"> <a href="{{ route('yuru.admin.deleteMedia' ,['media' => $media->id])}}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a></span>
 		</div>
 		<div class="panel-body">
 			<img src="{{$page->getThumbnailURL($media)}}" class="img-responsive" alt="Image">
@@ -129,10 +133,5 @@
 	@endforeach
 </div>
 {{$medias->links()}}
-
-@endsection
-
-@section('scripts')
-<script src="{{ elixir("js/admin-edit.js") }}"></script>
 @endsection
 

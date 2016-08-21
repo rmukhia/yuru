@@ -9,6 +9,7 @@ use URL;
 use Redirect;
 use Image;
 use File;
+use Log;
 
 use App\Page;
 use App\Media;
@@ -127,6 +128,8 @@ class AdminController extends Controller
 
         File::move($uploadedPath, $newPath);
 
+        Log::info('Moved '. $uploadedPath .' to '. $newPath);
+
         $this->saveThumbnail($request, $page, $media);
     }
 
@@ -144,7 +147,7 @@ class AdminController extends Controller
         }
 
         // Set the filename
-        $media->filename = $request->file('video-thumbnail')->getClientOriginalName();
+        $media->filename = $uploadedFile;
         // Set the thumbnail filename
         $media->thumbnail_filename = $request->file('video-thumbnail')->getClientOriginalName();
 
@@ -160,7 +163,6 @@ class AdminController extends Controller
         File::move($uploadedPath, $newPath);
 
         $this->saveThumbnail($request, $page, $media);
-
     }
 
     protected function postUploadMedia(Request $request, Page $page)

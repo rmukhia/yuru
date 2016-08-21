@@ -1,13 +1,7 @@
 @extends('yuru.app')
 
-@section('yuru-scripts')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/unitegallery/1.7.28/themes/tiles/ug-theme-tiles.min.js"></script>
-<script type="text/javascript" src="{{ elixir('js/page.js') }}"></script>
-@endsection
-
-
 @section('content')
-<div id="home-gallery" style="display:none;">
+<div id="page-gallery" style="display:none;">
 	@foreach($page->media as $media)
 	@if ($media->type == 'video')
 		<img alt="{{ $media->description }}"

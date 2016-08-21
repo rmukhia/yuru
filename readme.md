@@ -1,7 +1,6 @@
-# yuru
+# Yuru
 
-Yuru Project
-
+[Yuru Kalimpong](http://www.yurukalimpong.com)
 
 # Laravel PHP Framework
 

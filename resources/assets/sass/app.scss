@@ -1,6 +1,32 @@
-$nav-link-color:		#eee;
+/**
+ * Custom style sheet file
+ * Tries to combine
+ * - bootstrap
+ * - bootstrap-material-design
+ * - unitegallery
+ */
 
-body { padding-top: 120px; }
+$font-family-sans-serif:   'Roboto', 'Helvetica', 'Arial', sans-serif !default;
+$nav-link-color:    #eee;
+$brand-primary:         #dcc48e;
+$brand-info:            #4e6e5d;
+$brand-warning:         #b3c0a4;
+$yuru-description-text: #615b2d;
+
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "bower_components/bootstrap-material-design/sass/bootstrap-material-design.scss";
+@import "bower_components/bootstrap-material-design/sass/ripples.scss";
+
+
+/**
+ * Custom style which overwrites default bootstrap-material-design styles.
+ */
+
+
+body { 
+    padding-top: 120px; 
+}
+
 
 html {
 	opacity: 0.3;
@@ -25,6 +51,7 @@ html {
 
 .description-text {
 	text-align: center;
+    color: $yuru-description-text;
 }
 
 .hidden {
@@ -41,6 +68,10 @@ html {
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
 	background-color: darken($nav-link-color, 25%);
 }
+
+// .navbar-fixed-top .navbar-collapse {
+//     max-height: inherit;
+// }
 
 #loader { display: block; position: absolute; top: 25%; left:50%; z-index: 1;}
 
@@ -95,6 +126,10 @@ html {
     -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
       animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
 }
+
+.subheading {
+    font-size: 0.8em;
+}
  
 @-webkit-keyframes spin {
     0%   {
@@ -120,3 +155,7 @@ html {
         transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
     }
 }
+
+
+
+
