@@ -1,0 +1,7 @@
+{
+  "name": "yurukalimpong",
+  "dependencies": {
+    "bootstrap-material-design": "0.5.10",
+    "unitegallery": "1.7.28"
+  }
+}

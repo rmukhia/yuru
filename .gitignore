@@ -9,6 +9,7 @@ Homestead.json
 /public/css
 /public/js
 /public/build
+/resources/assets/css/build
 
 /bower_components
 
