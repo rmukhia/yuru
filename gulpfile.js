@@ -70,7 +70,8 @@ elixir(function(mix) {
         ".glyphicon-envelope",
         ".glyphicon-refresh",
         ".glyphicon-off",
-        ".navbar-fixed-top"
+        ".navbar-fixed-top",
+        /#loader/
       ]
     },  'resources/assets/css/build/trim/');
 

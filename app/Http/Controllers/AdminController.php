@@ -66,7 +66,7 @@ class AdminController extends Controller
         return $media;
     }
 
-    private function saveThumbnail(Request $request, Page $page, Media $media)
+    private function saveThumbnail(Page $page, Media $media)
     {
 
         if($media->type == 'video') {
@@ -74,13 +74,24 @@ class AdminController extends Controller
                 $constraint->upsize();
             });
             $thumbnail->save();
+            $thumbnail->destroy();
         }
         else {
             $thumbnail = Image::make('./' . $page->getFilenameURL($media))->heighten($page->thumbnailHeight() , function ($constraint) {
                 $constraint->upsize();
             });
-            $thumbnail->save('./' . $page->getThumbnailURL($media), 90);
+            $thumbnail->save('./' . $page->getThumbnailURL($media));
+            $thumbnail->destroy();
         }
+    }
+
+    private function resizeImage(Page $page, Media $media)
+    {
+        $image = Image::make('./'. $page->getFilenameURL($media))->heighten($page->imageHeight(), function ($constraint) {
+            $constraint->upsize();
+        });
+        $image->save('./' . $page->getFilenameURL($media));
+        $image->destroy();
     }
 
     private function saveImageSimple(Request $request, Page $page)
@@ -103,8 +114,8 @@ class AdminController extends Controller
         // Move file to permenant location
         $request->file('file')->move($page->getSavePath(), $media->getUniqueFilename());
 
-        $this->saveThumbnail($request, $page, $media);
-
+        $this->resizeImage($page, $media);
+        $this->saveThumbnail($page, $media);
     }
 
     private function saveImageLarge(Request $request, Page $page)
@@ -128,9 +139,8 @@ class AdminController extends Controller
 
         File::move($uploadedPath, $newPath);
 
-        Log::info('Moved '. $uploadedPath .' to '. $newPath);
-
-        $this->saveThumbnail($request, $page, $media);
+        $this->resizeImage($page, $media);
+        $this->saveThumbnail($page, $media);
     }
 
     private function saveVideoLarge(Request $request, Page $page)
@@ -162,7 +172,7 @@ class AdminController extends Controller
 
         File::move($uploadedPath, $newPath);
 
-        $this->saveThumbnail($request, $page, $media);
+        $this->saveThumbnail($page, $media);
     }
 
     protected function postUploadMedia(Request $request, Page $page)

@@ -26,6 +26,14 @@ class Page extends Model
         }
     }
 
+    public function imageHeight()
+    {
+        switch ($this->name) {
+            default:
+                return 1080;
+        }
+    }
+
     public function getSavePath()
     {
     	return 'media/' . $this->name;

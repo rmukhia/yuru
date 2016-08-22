@@ -14,7 +14,7 @@ echo "Running optimizations..."
 php artisan optimize --force
 php artisan route:cache
 echo "Creating tar ball..."
-tar -czvf ../yurukalimpong.tar.gz . --exclude='yurukalimpong.com' --exclude='tmp'
+tar -czvf ../yurukalimpong.tar.gz . --exclude='yurukalimpong.com' --exclude='tmp' --exclude=".git"
 echo "Enter DB password..."
 mysqldump -u homestead -p yurukali_yuru > ../yurukalimpong.sql 
 mv tmp/.env .env
