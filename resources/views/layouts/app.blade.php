@@ -38,7 +38,7 @@
 
             {{-- Branding Image --}}
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ url('logo.png') }}" class="img-responsive" alt="Image">
+                <span><img src="{{ url('logo.png') }}" class="img-responsive" alt="Image"></span>
             </a>
         </div>
 
