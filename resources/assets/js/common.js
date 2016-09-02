@@ -1,5 +1,4 @@
 $(function(){
-	$.material.init();
 	var $page = $("meta[name='page-name']").attr('content');
 	switch ($page) {
 		/* Homepage */
@@ -13,13 +12,16 @@ $(function(){
 		/* Undefined default pages */
 		case undefined:
 			break;
+		/* Contact Page */
+		case 'contact':
+			break;
 		/* All other pages */
 		default:
 			pageInit();
 	}
 });
 
-$(window).load(function() {
-    $("#loader-wrapper").hide();
-    $('html').css('opacity','1');
-});
+// $(window).load(function() {
+//     $("#loader-wrapper").hide();
+//     $('html').css('opacity','1');
+// });

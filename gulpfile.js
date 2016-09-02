@@ -19,8 +19,8 @@ elixir(function(mix) {
         [
         '../../../bower_components/jquery/dist/jquery.js',
         '../../../bower_components/bootstrap/dist/js/bootstrap.js',
-        '../../../bower_components/bootstrap-material-design/dist/js/material.js',
-        '../../../bower_components/bootstrap-material-design/dist/js/ripples.js',
+        // '../../../bower_components/bootstrap-material-design/dist/js/material.js',
+        // '../../../bower_components/bootstrap-material-design/dist/js/ripples.js',
         '../../../bower_components/unitegallery/dist/js/unitegallery.js',
         'admin/edit.js',
         'yuru',
@@ -48,7 +48,7 @@ elixir(function(mix) {
     mix.copy('bower_components/bootstrap/dist/fonts', 'public/build/fonts/bootstrap');
 
     mix.uncss('build/app.css', {
-       html: ['http://yuru.app', 'http://yuru.app/page/rooms', 'http://yuru.app/login', 'http://yuru.app/admin/page/test/home'],
+       html: ['http://yuru.app', 'http://yuru.app/page/rooms', 'http://yuru.app/contact', 'http://yuru.app/login', 'http://yuru.app/admin/page/test/rooms'],
        media : ['(min-width: 700px) handheld and (orientation: landscape)'],
        ignore: [
         '#added_at_runtime',
@@ -70,7 +70,7 @@ elixir(function(mix) {
         ".glyphicon-envelope",
         ".glyphicon-refresh",
         ".glyphicon-off",
-        ".navbar-fixed-top"
+        /affix/
       ]
     },  'resources/assets/css/build/trim/');
 
@@ -83,7 +83,12 @@ elixir(function(mix) {
     ], 'public/css');
 
     mix.version([
-        'public/css/all.css', 
+        'public/css/all.css',
         'public/js/app.js'
         ]);
+
+    // mix.sass('app.scss').version([
+    //     'public/css/app.css',
+    //     'public/js/app.js'
+    //     ]);
 });

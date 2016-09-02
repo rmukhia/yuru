@@ -19,15 +19,33 @@
 
     {{-- Styles --}}
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
+    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     @yield('css')
 
 </head>
 <body id="app-layout">
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
+{{-- Google Analytics --}}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-83570601-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<header>
+<div id="logo">
+    <img id="logo-main" src="{{ url('logo.png') }}" alt="Yuru">
+    <h4 id="logo-tagline">hospitality on high</h4>
+</div>
+
+<nav id="navbar-primary" class="navbar navbar-default" data-spy="affix" data-offset-top="118" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
             {{-- Collapsed Hamburger --}}
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                 <span class="sr-only">Toggle Navigation</span>
@@ -35,21 +53,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
-            {{-- Branding Image --}}
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ url('logo.png') }}" class="img-responsive" alt="Image">
-            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            {{-- Left Side Of Navbar --}}
             <ul class="nav navbar-nav">
-                
-            </ul>
-
-            {{-- Right Side Of Navbar --}}
-            <ul class="nav navbar-nav navbar-right">
                 <li class="{{ Request::is('/') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.home') }}">Home</a></li>
                 <li class="{{ Request::is('page/rooms') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'rooms']) }}">Rooms</a></li>
                 <li class="{{ Request::is('page/restaurant') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'restaurant']) }}">Restaurant</a></li>
@@ -57,6 +64,7 @@
                 <li class="{{ Request::is('page/service') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'service']) }}">Service</a></li>
                 <li class="{{ Request::is('page/itinerary') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'itinerary']) }}">Itinerary</a></li>
                 <li class="{{ Request::is('page/whattodo') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'whattodo']) }}">What To Do At Yuru</a></li>
+                <li class="{{ Request::is('contact') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.contact') }}">Contact Us</a></li>
                 @if (!Auth::guest())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -78,28 +86,16 @@
         </div>
     </div>
 </nav>
-
+</header>
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 content-margin-bottom">
-        <div id="loader-wrapper">
-            <div id="loader"></div>
-        </div>
-            @yield('content')
-        </div>
-        <div class="col-md-4">
-            @yield('sidebar')
-        </div>
-    </div>
+    @yield('content')
 </div>
-
-<hr>
 
 {{-- Footer --}}
 <footer class="footer">
-      <div class="container">
+      <div class="container text-center">
         <p class="text-muted">© 2016 Yuru Retreat Delo Kalimpong </p>
         <p><a href="{{url('/login')}}">Admin Page</a></p>
       </div>

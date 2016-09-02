@@ -1,159 +1,149 @@
-/**
- * Custom style sheet file
- * Tries to combine
- * - bootstrap
- * - bootstrap-material-design
- * - unitegallery
- */
+@import 'https://fonts.googleapis.com/css?family=Lora|Arima+Madurai:300';
 
-$font-family-sans-serif:   'Roboto', 'Helvetica', 'Arial', sans-serif !default;
-$nav-link-color:    #eee;
-$brand-primary:         #dcc48e;
-$brand-info:            #4e6e5d;
-$brand-warning:         #b3c0a4;
-$yuru-description-text: #615b2d;
+$font-family-sans-serif:            'Lora', serif;
+$font-size-base:                    18px;
+$line-height-base:                  1.7;
+$text-color:                        rgba(0, 0, 0, 0.8);
 
+
+$yuru-logo-color:                   #2f6f51;
+$yuru-font-cursive:                 'Arima Madurai', cursive;
+
+$navbar-height:                     70px;
+$navbar-default-link-color:         #777;
+$navbar-default-link-hover-color:   darken($yuru-logo-color,50%);
+$navbar-default-link-active-color:  white;
+$navbar-default-bg:                 lighten($yuru-logo-color, 80%);
+$navbar-default-link-active-bg:     $yuru-logo-color;
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "bower_components/bootstrap-material-design/sass/bootstrap-material-design.scss";
-@import "bower_components/bootstrap-material-design/sass/ripples.scss";
 
 
-/**
- * Custom style which overwrites default bootstrap-material-design styles.
+/*
+ * Basic HTML elements
  */
 
+body {
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.75), 
+      rgba(255, 255, 255, 0.25)
+    ),url('/page-elements/background.jpg');
 
-body { 
-    padding-top: 120px; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
+header {
+    position: relative;
+    z-index: 1;
+    #logo {
+        min-height: 80px;
+        #logo-main {
+            display: block;
+            margin: 20px auto;
+        }
 
-html {
-	opacity: 0.3;
+        #logo-tagline {
+            display: block;
+            font-family: $yuru-font-cursive;
+            text-align: center;
+        }
+    }
+}
+
+footer {
+    background: $navbar-default-bg;
+    opacity: 0.90;
+    margin-top: 50px;
+    padding-top: 50px;
+}
+
+/*
+ * Helper classes
+ */
+
+.text-center {
+    text-align: center;
+}
+
+/*
+ * Navbar
+ */
+#navbar-primary {
+    &.navbar-default {
+        //background: transparent;
+        border: none;
+        font-family: $yuru-font-cursive;
+        opacity: 0.90;
+        @media screen and (min-width: $screen-tablet) {
+            .navbar-nav { 
+                width: 100%;
+                text-align: center;
+                > li {
+                    display: inline-block;
+                    float: none;
+                    > a {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+    &.affix {
+        position: fixed;
+        border: 1px solid #eee;
+        top: 0;
+        width: 100%
+    }
+}
+
+/*
+ * Box
+ */
+
+.box {
+    padding: 30px 40px 30px 40px;
+    margin-bottom: 20px;
+    background: $navbar-default-bg;
+    opacity: 0.93;
+    hr {
+        max-width: 400px;
+        border-color: #999;
+    }
+    h2 {
+        text-transform: uppercase;
+        font-family: $yuru-font-cursive;
+        //font-size: 1.5em;
+    }
+    p {
+        text-align: justify;
+        &.no-justify {
+            text-align: left;
+        }
+    }
+    .table {
+        td {
+            border: none;
+        }
+        th {
+            border: none;
+        }
+    }
+}
+
+.div-center {
+    margin: 0 auto;
+    width: 100%
 }
 
 .admin-thumbnail {
 	min-height: 400px;
 }
 
-.booking-container {
-	margin: auto;
-    width: 50%;
-}
-
-.footer {
-	text-align: center;
-}
-
-.content-margin-bottom {
-	margin-bottom: 20px;
-}
-
-.description-text {
-	text-align: center;
-    color: $yuru-description-text;
-}
-
-.hidden {
-	display: none;
-}
-
-.navbar, .navbar.navbar-default {
-	color: black;
-	background-color: white;
-	box-shadow: 0px 5px 10px darken($nav-link-color, 25%);
-}
-
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-	background-color: darken($nav-link-color, 25%);
-}
-
-// .navbar-fixed-top .navbar-collapse {
-//     max-height: inherit;
-// }
-
-#loader { display: block; position: absolute; top: 25%; left:50%; z-index: 1;}
-
-#loader-wrapper {
-    position: fixed;
-    opacity: 1px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-}
-#loader {
-    display: block;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #3498db;
-    -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
- 
-#loader:before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #e74c3c;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
- 
-#loader:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #f9c922;
-    -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-      animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
-
-.subheading {
-    font-size: 0.8em;
-}
- 
-@-webkit-keyframes spin {
-    0%   {
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-}
-@keyframes spin {
-    0%   {
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
+.margin-element {
+    margin-bottom: 20px;
 }
 
 

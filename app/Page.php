@@ -26,6 +26,24 @@ class Page extends Model
         }
     }
 
+    public function thumbnailWidth() 
+    {
+        switch ($this->name) {
+            case 'home':
+                return 900;
+            default:
+                return 700;
+        }
+    }
+
+    public function imageHeight()
+    {
+        switch ($this->name) {
+            default:
+                return 1080;
+        }
+    }
+
     public function getSavePath()
     {
     	return 'media/' . $this->name;

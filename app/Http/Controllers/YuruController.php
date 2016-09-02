@@ -38,4 +38,10 @@ class YuruController extends Controller
 
     }
 
+    protected function getContact()
+    {
+        return view('yuru.contact',
+            ['page' => (object)['name' => 'contact']]);
+    }
+
 }

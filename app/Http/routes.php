@@ -18,14 +18,9 @@ Route::auth();
  */
 
 Route::get('/', 'YuruController@home')->name('yuru.home');
-Route::get('/rooms', 'YuruController@rooms')->name('yuru.rooms');
-Route::get('/resturant', 'YuruController@resturant')->name('yuru.resturant');
-Route::get('/property', 'YuruController@property')->name('yuru.property');
-Route::get('/service', 'YuruController@service')->name('yuru.service');
-Route::get('/itinerary', 'YuruController@itinerary')->name('yuru.itinerary');
-Route::get('/whattodo', 'YuruController@whattodo')->name('yuru.whattodo');
-
 Route::get('/page/{page}', 'YuruController@getPage')->name('yuru.page');
+
+Route::get('/contact', 'YuruController@getContact')->name('yuru.contact');
 
 /*
  * The Admin View
