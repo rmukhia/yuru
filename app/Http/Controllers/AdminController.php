@@ -87,7 +87,7 @@ class AdminController extends Controller
 
     private function resizeImage(Page $page, Media $media)
     {
-        $image = Image::make('./'. $page->getFilenameURL($media))->widen($page->imageHeight(), function ($constraint) {
+        $image = Image::make('./'. $page->getFilenameURL($media))->heighten($page->imageHeight(), function ($constraint) {
             $constraint->upsize();
         });
         $image->save('./' . $page->getFilenameURL($media));
