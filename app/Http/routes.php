@@ -19,6 +19,7 @@ Route::auth();
 
 Route::get('/', 'YuruController@home')->name('yuru.home');
 Route::get('/page/{page}', 'YuruController@getPage')->name('yuru.page');
+Route::get('/images/{page}', 'YuruController@getImages')->name('yuru.images');
 
 Route::get('/contact', 'YuruController@getContact')->name('yuru.contact');
 
@@ -36,4 +37,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 	Route::get('/admin/deleteMedia/{media}', 'AdminController@getDeleteMedia')->name('yuru.admin.deleteMedia');
 	Route::delete('/admin/deleteMedia/{media}', 'AdminController@deleteDeleteMedia')->name('yuru.admin.deleteMedia.delete');
+
+	Route::get('/admin/debug/{command}', 'AdminController@getDebug')->name('yuru.admin.debug');
 });

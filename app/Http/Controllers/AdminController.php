@@ -220,4 +220,33 @@ class AdminController extends Controller
         $media->delete();
         return redirect($previousURL);
     }
+
+    /* Debug commands */
+
+    private function refreshThumbnails()
+    {
+        $result = [];
+        foreach(Media::all() as $media) {
+            $page = $media->page;
+            $this->saveThumbnail($page, $media);
+
+            array_push($result, [ 'filename' => $media->filename, 'thumbnail_filename' => $media->thumbnail_filename, 'page' => $page->name]);
+        }
+
+        return $result;
+    }
+
+    protected function getDebug($command)
+    {
+        $result = [];
+        switch ($command) {
+            case 'refreshThumbnails':
+                $result = $this->refreshThumbnails();
+                break;
+            default:
+                array_push($result, 'Command not found');
+        }
+
+        return $result;
+    }
 }

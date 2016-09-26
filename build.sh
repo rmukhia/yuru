@@ -1,10 +1,13 @@
-php artisan migrate:refresh --seed
+# Before running this script make sure that some pictures are uploaded for rooms.
+# This is because uncss has to process image thumbnail css.
+
 echo "Removing old folders..."
-./refresh_media.sh
 rm .htaccess
 echo "Running gulp..."
 gulp
 gulp --production
+./refresh_media.sh
+php artisan migrate:refresh --seed
 mkdir -p tmp
 mv .env tmp
 echo "Copying configuration files..."

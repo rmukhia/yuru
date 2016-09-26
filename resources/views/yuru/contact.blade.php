@@ -7,18 +7,13 @@
 @endsection
 
 @section('content')
-<div class="row box">
+<div class="row box-cutout">
 	<hr>
-	<h2 class="text-center">Contact Us</h2>
-	<hr>	
-	<p class="no-justify">
-		 Email: &nbsp;&nbsp;&nbsp;<a href="mailto:yurukalimpong@gmail.com?Subject=I%20got%20this%20email%20id%20from%20www.yurukalimpong.com" target="_top">yurukalimpong@gmail.com</a></td>
-	</p>
-	
-	<p class="no-justify">
-		 Phone Numbers: &nbsp;&nbsp;&nbsp;+91-9563773297, +91-8436152083, +91-8159921233
-	</p>
-
+	<h2 class="text-center">{{ $page->title}}</h2>
+	<hr>
+	<div class="no-justify">	
+	{!! Markdown::convertToHtml($page->description) !!}
+	</div>
 </div>
 <div class="row box">
 	<hr>
@@ -26,7 +21,7 @@
 	<hr>	
 	<p>To book directly with us kindly get in touch through the contact information provided above.</p>
 	<p>We reply to mails promptly and will call back in case we cannot answer your phone calls for some reason.</p>
-	<div id="TA_selfserveprop636" class="TA_selfserveprop margin-element col-md-6">
+	<div id="TA_selfserveprop636" class="TA_selfserveprop margin-element col-md-12">
 			<ul id="KegvSEES6Ve" class="TA_links H9d05X">
 				<li id="Vcgx9KIWLp" class="ishjbCYoeTFy">
 					<a target="_blank" href="https://www.tripadvisor.in/">
@@ -34,12 +29,6 @@
 					</a>
 				</li>
 			</ul>
-	</div>
-
-	<div class="col-md-6 margin-element">
-		<a target="_blank" href="http://booking.com/hotel/in/yuru-retreat.html">
-		<img src="/page-elements/booking-com.jpg" alt="Booking.com"/>
-		</a>
 	</div>
 </div>
 

@@ -159,5 +159,12 @@ function uploadMethodChange()
  */
 function adminInit() {
 	state1();
+	$.getScript('/js/simplemde/simplemde-1-11-2.min.js', function () {
+		new SimpleMDE({
+		element: document.getElementById("markdown-editor"),
+		spellChecker: false,
+		hideIcons: ["bold", "side-by-side", "fullscreen"]
+		});
+	});
 }
 

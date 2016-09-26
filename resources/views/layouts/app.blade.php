@@ -23,6 +23,16 @@
 
     @yield('css')
 
+    <style>
+    body {
+        background: url('{{ $backgroundImage }}');
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    </style>
+
 </head>
 <body id="app-layout">
 {{-- Google Analytics --}}
@@ -57,27 +67,30 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="{{ Request::is('/') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.home') }}">Home</a></li>
-                <li class="{{ Request::is('page/rooms') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'rooms']) }}">Rooms</a></li>
-                <li class="{{ Request::is('page/restaurant') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'restaurant']) }}">Restaurant</a></li>
-                <li class="{{ Request::is('page/property') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'property']) }}">Property</a></li>
-                <li class="{{ Request::is('page/service') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'service']) }}">Service</a></li>
-                <li class="{{ Request::is('page/itinerary') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'itinerary']) }}">Itinerary</a></li>
-                <li class="{{ Request::is('page/whattodo') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.page' ,['page' => 'whattodo']) }}">What To Do At Yuru</a></li>
-                <li class="{{ Request::is('contact') ? 'active' : null }}"><a class="navbar_underlined" href="{{ route('yuru.contact') }}">Contact Us</a></li>
+                @foreach ($allPages as $eachPage)
+                @if ($eachPage->name == 'home')
+                <li class="{{ Request::is('/') ? 'active' : null }}"><a href="{{ route('yuru.home') }}">Home</a></li>
+                @elseif ($eachPage->name == 'contact')
+                <li class="{{ Request::is($eachPage->name) ? 'active' : null }}"><a href="{{ route('yuru.contact') }}">{{ $eachPage->title }}</a></li>
+                @else
+                <li class="{{ Request::is('page/'. $eachPage->name) ? 'active' : null }}"><a href="{{ route('yuru.page' ,['page' => $eachPage->name]) }}">{{ $eachPage->title }}</a></li>
+                @endif
+                @endforeach
                 @if (!Auth::guest())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('yuru.admin.page' ,['page' => 'home']) }}">Edit Home</a></li>
-                            <li><a href="{{ route('yuru.admin.page' ,['page' => 'rooms']) }}">Edit Rooms</a></li>
-                            <li><a href="{{ route('yuru.admin.page' ,['page' => 'restaurant']) }}">Edit Restaurant</a></li>
-                            <li><a href="{{ route('yuru.admin.page' ,['page' => 'property']) }}">Edit Property</a></li>
-                            <li><a href="{{ route('yuru.admin.page' ,['page' => 'service']) }}">Edit Service</a></li>
-                            <li><a href="{{ route('yuru.admin.page' ,['page' => 'itinerary']) }}">Edit Itinerary</a></li>
-                            <li><a href="{{ route('yuru.admin.page' ,['page' => 'whattodo']) }}">Edit What To Do At Yuru</a></li>
+                        @foreach ($allPages as $eachPage)
+                            <li><a href="{{ route('yuru.admin.page' ,['page' => $eachPage->name]) }}">Edit 
+                            @if ($eachPage->name == 'home')
+                                Home
+                            @else
+                                {{ $eachPage->title}}
+                            @endif
+                            </a></li>
+                        @endforeach
                             <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
                         </ul>
                     </li>
@@ -88,8 +101,9 @@
 </nav>
 </header>
 
-
 <div class="container">
+<div class="row cutout">
+</div>
     @yield('content')
 </div>
 

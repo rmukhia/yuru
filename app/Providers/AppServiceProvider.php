@@ -24,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        view()->composer(
+            'layouts.app', 'App\ViewComposers\LayoutComposer'
+        );
     }
 }

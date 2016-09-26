@@ -64,5 +64,13 @@ Some farsighted guests have made Yuru their base from where they have explored D
 Guests who want to do more can be picked up from the property itself for paragliding flights. They could just take a walk and visit the Delo Park, Science Centre, the Forest Garden etc. They could go for a picnic to the river and enjoy white water rafting. Or visit places such as Lava, Loleygaon, Rambhang, Rishop etc.
 Yuru will help them plan these trips and guests can communicate with the management prior to their visit so that these things can be planned with the other partners and stakeholders.'
         ));
+
+        Page::create(array(
+            'name' => 'contact',
+            'title' => 'Contact Us',
+            'description' => 
+            'Email:    yurukalimpong@gmail.com
+Phone Numbers:    +91-9563773297, +91-8436152083, +91-8159921233'
+        ));
     }
 }

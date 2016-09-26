@@ -4,9 +4,13 @@
 <meta name="page-name" content="admin-edit">
 @endsection
 
+@section('css')
+	<link rel="stylesheet" type="text/css" href="{{ url('css/simplemde/simplemde-1-11-2.min.css') }}">
+@endsection
+
 @section('content')
 
-<div class="row box">
+<div class="row box-cutout">
 	<hr>
 	<h2 class="text-center">Edit Description</h2>
 	<hr>		
@@ -21,7 +25,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-12">
-				<textarea name="description" class="form-control" rows="25" required="required">{{ $page->description }}</textarea>
+				<textarea id="markdown-editor" name="description" class="form-control" rows="25">{{ $page->description }}</textarea>
 			</div>
 		</div>
 		<div class="form-group">
